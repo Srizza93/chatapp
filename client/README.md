@@ -1,4 +1,4 @@
-# chatapp
+# client
 
 ## Project setup
 ```
