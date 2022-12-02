@@ -5,7 +5,7 @@ const { PORT, mongoUri } = require("./config");
 const cors = require("cors");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
-const bucketListItemRoutes = require("./routes/api/bucketListItems");
+const loginCredentialsRoutes = require("./routes/api/loginCredentials");
 const path = require("path");
 
 app.use(cors());
@@ -17,7 +17,7 @@ mongoose
 	.then(() => console.log("MongoDB database Connected..."))
 	.catch((err) => console.log(err));
 
-app.use("/api/bucketListItems", bucketListItemRoutes);
+app.use("/api/loginCredentials", loginCredentialsRoutes);
 
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static("client/dist"));
