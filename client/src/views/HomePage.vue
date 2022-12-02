@@ -8,7 +8,6 @@
 	</div>
 </template>
 <script>
-import axios from "axios";
 import LoginForm from "@/components/LoginForm.vue";
 
 export default {
@@ -22,8 +21,8 @@ export default {
 		};
 	},
 	async mounted() {
-		const response = await axios.get("api/loginCredentials/");
-		this.users = response.data;
+		await this.$store.dispatch("apiCall");
+		this.users = this.$store.getters.usersList;
 	},
 	methods: {
 		inputsValidation(data) {
@@ -38,6 +37,7 @@ export default {
 				return;
 			}
 			this.wrongPass = false;
+			this.$store.commit("updateUserData", user);
 			this.$router.push(`/user-home/:${user._id}`);
 		},
 	},
