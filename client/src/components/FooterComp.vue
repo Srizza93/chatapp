@@ -78,4 +78,7 @@ export default {
 	color: white;
 	text-decoration: none;
 }
+.link-list_url-link:hover {
+	text-decoration: underline;
+}
 </style>

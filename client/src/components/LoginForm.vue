@@ -22,7 +22,9 @@
 		</div>
 		<router-link to="/" class="forgot-password">Forgot Password?</router-link>
 		<div class="signup-wrapper">
-			<router-link to="/" class="signup-wrapper_link">Sign up</router-link>
+			<router-link to="/signup" class="signup-wrapper_link"
+				>Sign up</router-link
+			>
 		</div>
 	</form>
 </template>
@@ -87,8 +89,8 @@ export default {
 	border-radius: $standard-radius;
 	margin-bottom: 20px;
 }
-.input-container_input:focus {
-	outline: solid $primary-color;
+.input-login:focus {
+	outline: 2px solid $primary-color;
 }
 .result-login {
 	display: flex;

@@ -1,11 +1,14 @@
 <template>
 	<div class="login">
-		<span>{{ user.username }}</span>
+		<TopUserPage :userData="user" />
 	</div>
 </template>
 <script>
+import TopUserPage from "@/components/TopUserPage.vue";
+
 export default {
 	name: "LoginPage",
+	components: { TopUserPage },
 	data() {
 		return {
 			user: {},

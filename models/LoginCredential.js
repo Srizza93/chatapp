@@ -13,6 +13,22 @@ const LoginCredentialSchema = new Schema({
 		type: Date,
 		default: Date.now,
 	},
+	name: {
+		type: String,
+		required: true,
+	},
+	surname: {
+		type: String,
+		required: true,
+	},
+	wallPhoto: {
+		type: String,
+		required: true,
+	},
+	profilePhoto: {
+		type: String,
+		required: true,
+	},
 });
 
 const LoginCredential = model("loginCredential", LoginCredentialSchema);

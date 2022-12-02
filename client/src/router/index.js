@@ -6,6 +6,10 @@ const routeOptions = [
 		name: "HomePage",
 	},
 	{
+		path: "/signup",
+		name: "SignupPage",
+	},
+	{
 		path: "/user-home/:id",
 		name: "UserHome",
 	},
