@@ -8,7 +8,7 @@
 	</div>
 </template>
 <script>
-import LoginForm from "@/components/LoginForm.vue";
+import LoginForm from "@/components/homepage/LoginForm.vue";
 
 export default {
 	name: "HomePage",
@@ -26,7 +26,9 @@ export default {
 	},
 	methods: {
 		inputsValidation(data) {
-			const user = this.users.find((user) => user.username === data[0].text);
+			const user = this.users.find(
+				(user) => user.emailaddress === data[0].text
+			);
 			if (!user) {
 				this.wrongUser = true;
 				return;

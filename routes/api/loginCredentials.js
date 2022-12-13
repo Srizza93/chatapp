@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
 	try {
 		const loginCredential = await newLoginCredential.save();
 		if (!loginCredential)
-			throw new Error("Something went wrong saving the bucketListItem");
+			throw new Error("Something went wrong saving the loginCredentials");
 		res.status(200).json(loginCredential);
 	} catch (error) {
 		res.status(500).json({ message: error.message });

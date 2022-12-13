@@ -4,7 +4,7 @@
 	</div>
 </template>
 <script>
-import TopUserPage from "@/components/TopUserPage.vue";
+import TopUserPage from "@/components/user/TopUserPage.vue";
 
 export default {
 	name: "LoginPage",

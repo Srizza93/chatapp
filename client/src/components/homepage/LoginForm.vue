@@ -11,7 +11,7 @@
 		<div class="result-login">
 			<input class="submit-button" type="submit" value="Login" />
 			<div class="result-login_message" v-if="wrongUser || wrongPass">
-				<span v-if="wrongUser">Incorrect Username</span>
+				<span v-if="wrongUser">Incorrect Email Address</span>
 				<span v-if="wrongPass">Incorrect Password</span>
 				<img
 					class="input-container_icon"
@@ -21,7 +21,7 @@
 			</div>
 		</div>
 		<router-link to="/" class="forgot-password">Forgot Password?</router-link>
-		<div class="signup-wrapper">
+		<div class="submit-button signup-wrapper">
 			<router-link to="/signup" class="signup-wrapper_link"
 				>Sign up</router-link
 			>
@@ -45,19 +45,16 @@ export default {
 		return {
 			fields: [
 				{
-					name: "username",
+					name: "emailaddress",
 					text: "",
-					type: "text",
-					placeholder: "Username or email",
-					regex: /^[a-zA-Z][a-zA-Z_]{5,30}$/,
+					type: "email",
+					placeholder: "Email Address",
 				},
 				{
 					name: "password",
 					text: "",
 					type: "password",
 					placeholder: "Password",
-					regex:
-						/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/,
 				},
 			],
 		};
@@ -82,9 +79,7 @@ export default {
 	background-color: white;
 }
 .input-login {
-	display: flex;
-	flex-direction: column;
-	padding: 10px 20px;
+	padding: $small-distance;
 	border: 2px solid $primary-gray;
 	border-radius: $standard-radius;
 	margin-bottom: 20px;
@@ -111,19 +106,6 @@ export default {
 	height: 20px;
 	margin-left: 10px;
 }
-.submit-button {
-	width: 100%;
-	max-width: 150px;
-	padding: 5px;
-	border: none;
-	border-radius: $standard-radius;
-	color: white;
-	background-color: $primary-color;
-	cursor: pointer;
-}
-.submit-button:hover {
-	background-color: $hover-primary-color;
-}
 .forgot-password {
 	margin-bottom: 20px;
 	color: $primary-color;
@@ -133,15 +115,9 @@ export default {
 	text-decoration: underline;
 }
 .signup-wrapper {
-	display: flex;
-	justify-content: center;
-	border-top: 2px solid $primary-gray;
-	padding-top: 20px;
+	max-width: $small-button;
 }
 .signup-wrapper_link {
-	padding: $button-padding;
-	border-radius: $standard-radius;
-	background-color: $primary-color;
 	color: white;
 	text-decoration: none;
 }

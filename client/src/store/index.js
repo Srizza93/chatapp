@@ -1,4 +1,5 @@
-import { createStore, createLogger } from "vuex";
+import { createStore } from "vuex";
+import createPersistedState from "vuex-persistedstate";
 import users from "./modules/users";
 import user from "./modules/user";
 
@@ -10,5 +11,5 @@ export default createStore({
 		user,
 	},
 	strict: debug,
-	plugins: debug ? [createLogger()] : [],
+	plugins: [createPersistedState()],
 });

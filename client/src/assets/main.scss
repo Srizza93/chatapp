@@ -1,0 +1,27 @@
+html,
+body {
+	padding: 0;
+	margin: 0;
+	background-color: #f0f2f5;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.submit-button {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	max-width: 150px;
+	padding: 5px;
+	border: none;
+	border-radius: $standard-radius;
+	color: white;
+	background-color: $primary-color;
+	font-size: 15px;
+	cursor: pointer;
+}
+.submit-button:hover {
+	background-color: $hover-primary-color;
+}
+.show-message {
+	visibility: visible !important;
+}

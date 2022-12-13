@@ -20,6 +20,9 @@ const mutations = {
 	updateUsersState(state, response) {
 		state.users = response.data;
 	},
+	signupUser(state, response) {
+		state.users.push(response);
+	},
 };
 
 const getters = {

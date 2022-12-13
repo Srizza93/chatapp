@@ -4,7 +4,6 @@ const state = () => ({
 
 const mutations = {
 	updateUserData(state, response) {
-		console.log(response);
 		state.user = response;
 	},
 };
