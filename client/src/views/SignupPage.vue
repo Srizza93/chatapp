@@ -2,14 +2,12 @@
 	<div class="signup">
 		<span class="signup-title">Signup on ChatApp</span>
 		<span
-			v-bind:class="{ 'show-message': successSignup }"
+			v-bind:class="{
+				'show-message': signupOutcome,
+				'signup-unsuccess': outcomeError,
+			}"
 			class="signup-success"
-			>Account Created Successfully!!!</span
-		>
-		<span
-			v-bind:class="{ 'show-message': unsuccessSignup }"
-			class="signup-unsuccess"
-			>An error occurred while creating the account, please try again.</span
+			>{{ signupMessage }}</span
 		>
 		<signup-form :fields="fields" @sendFormToParent="signUp" />
 	</div>
@@ -24,12 +22,10 @@ export default {
 	data() {
 		const self = this;
 		return {
-			successSignup: false,
-			unsuccessSignup: false,
 			fields: [
 				{
 					id: 1,
-					name: "emailaddress",
+					name: "email_Address",
 					type: "email",
 					placeholder: "Email Address",
 					value: "",
@@ -62,7 +58,7 @@ export default {
 				},
 				{
 					id: 3,
-					name: "confirm password",
+					name: "confirm_Password",
 					type: "password",
 					placeholder: "Confirm password",
 					value: "",
@@ -99,6 +95,9 @@ export default {
 					},
 				},
 			],
+			signupMessage: "Account Created Successfully!!!",
+			signupOutcome: false,
+			outcomeError: false,
 		};
 	},
 	methods: {
@@ -110,35 +109,48 @@ export default {
 			input.valid = true;
 		},
 		async signUp() {
+			const allFieldsValid = this.fields.every((field) => field.valid);
+
+			if (!allFieldsValid) {
+				return;
+			}
+
 			const data = {
-				emailaddress: this.fields[0].value,
+				email_Address: this.fields[0].value,
 				password: this.fields[1].value,
 				name: this.fields[3].value,
 				surname: this.fields[4].value,
 			};
+
 			try {
 				await axios.post("api/loginCredentials/", data).then((response) => {
 					if (response.status === 200) {
 						this.$store.commit("signupUser", response);
-						this.successfulSignup();
-						this.cleanUpForm();
+						this.validateSignup("Account Created Successfully!!!");
 					}
 					if (response.status === 401) {
 						console.log("Please verify your email");
 					}
 				});
 			} catch (error) {
-				this.unsuccessfulSignup();
+				this.validateSignup(
+					"An error occurred while creating the account, please try again.",
+					error
+				);
 				console.log("Error is: " + error);
 			}
 		},
-		successfulSignup() {
-			this.unsuccessSignup = false;
-			this.successSignup = true;
-		},
-		unsuccessfulSignup() {
-			this.successSignup = false;
-			this.unsuccessSignup = true;
+		async validateSignup(outcome, error) {
+			this.signupOutcome = true;
+			this.signupMessage = outcome;
+			this.outcomeError = false;
+			if (error) {
+				this.outcomeError = true;
+			}
+			this.cleanUpForm();
+			await setTimeout(() => {
+				this.signupOutcome = false;
+			}, 5000);
 		},
 		cleanUpForm() {
 			this.fields.forEach(
@@ -154,6 +166,7 @@ export default {
 	flex-direction: column;
 	align-items: center;
 	padding: $standard-distance;
+	text-align: center;
 }
 .signup-title {
 	width: 100%;
@@ -163,11 +176,11 @@ export default {
 	font-weight: bold;
 }
 .signup-success {
-	visibility: hidden;
+	opacity: 0;
+	transition-duration: 2s;
 	color: #2bcd2b;
 }
 .signup-unsuccess {
-	visibility: hidden;
 	color: rgb(198, 0, 0);
 }
 </style>

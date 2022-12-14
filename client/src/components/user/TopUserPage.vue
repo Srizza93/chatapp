@@ -1,25 +1,46 @@
 <template>
 	<div class="top-page">
-		<img class="photo-wall" :src="userData.wallPhoto" alt="wall-photo" />
+		<img
+			v-if="userData && userData.wall_Photo"
+			class="photo-wall"
+			:src="userData.wall_Photo"
+			alt="wall-photo"
+		/>
 		<div class="photo-container">
-			<img
-				class="photo-container_profile"
-				:src="userData.profilePhoto"
-				alt="profile-photo"
-			/>
-			<span class="photo-container_user-name"
+			<div class="photo-container_sub-container">
+				<img
+					v-if="userData && userData.profile_Photo"
+					class="photo-container_profile"
+					:src="userData.profile_Photo"
+					alt="profile-photo"
+				/>
+				<EditComp :editClass="editClass">
+					<EditPopUp />
+				</EditComp>
+			</div>
+			<span
+				v-if="userData && userData.name && userData.surname"
+				class="photo-container_user-name"
 				>{{ userData.name }} {{ userData.surname }}</span
 			>
 		</div>
 	</div>
 </template>
 <script>
+import EditComp from "../common/EditComp.vue";
+import EditPopUp from "../common/EditPopUp.vue";
+
 export default {
 	name: "TopUserPage",
+	components: { EditComp, EditPopUp },
+	data() {
+		return {
+			editClass: "edit-comp-anchor",
+		};
+	},
 	props: {
 		userData: {
 			type: Object,
-			required: true,
 		},
 	},
 };
@@ -41,15 +62,27 @@ export default {
 	width: 200px;
 	margin-left: 50px;
 }
-.photo-container_profile {
+.photo-container_sub-container {
 	position: absolute;
 	top: -150px;
 	width: 200px;
 	height: 200px;
+}
+.photo-container_profile {
+	width: 100%;
+	height: 100%;
 	border-radius: 50%;
 }
 .photo-container_user-name {
 	font-size: 26px;
 	margin-top: 65px;
+}
+</style>
+
+<style>
+.edit-comp-anchor {
+	position: absolute;
+	bottom: 0;
+	right: 0;
 }
 </style>

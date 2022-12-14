@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const LoginCredentialSchema = new Schema({
-	emailaddress: {
+	email_Address: {
 		type: String,
 		required: true,
 	},
@@ -21,11 +21,11 @@ const LoginCredentialSchema = new Schema({
 		type: String,
 		required: false,
 	},
-	wallPhoto: {
+	wall_Photo: {
 		type: String,
 		required: false,
 	},
-	profilePhoto: {
+	profile_Photo: {
 		type: String,
 		required: false,
 	},

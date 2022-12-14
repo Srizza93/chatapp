@@ -17,7 +17,8 @@
 				v-if="field.value"
 				class="input-container_cross"
 				:src="getImgUrl(isInputValid(field.valid))"
-				alt="red-cross"
+				alt="red-cross/green-tick"
+				v-bind:class="{ 'outline-pop': !field.valid }"
 			/>
 		</div>
 		<input class="submit-button" type="submit" />
@@ -50,6 +51,7 @@ export default {
 	align-items: center;
 	padding: $standard-distance;
 	margin: $standard-distance;
+	border-radius: $standard-radius;
 	background-color: white;
 }
 .input-container {
@@ -69,5 +71,23 @@ export default {
 	top: 10px;
 	width: 20px;
 	height: 20px;
+	border-radius: 50%;
+}
+
+.outline-pop {
+	animation: outline-pop 1s infinite;
+}
+
+@keyframes outline-pop {
+	0% {
+		outline: none;
+	}
+	50% {
+		outline: 2px solid red;
+	}
+	100% {
+		outline-offset: 2px;
+		outline: transparent;
+	}
 }
 </style>

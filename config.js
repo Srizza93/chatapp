@@ -1,7 +1,8 @@
+const dotenv = require("dotenv");
+
+dotenv.config();
+
 module.exports = {
-	mongoUri: process.env.MONGO_URI,
+	mongoUri: `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@portfolio-cluster.z0ixmu0.mongodb.net/portfolio_data`,
 	PORT: process.env.PORT || 3000,
 };
-
-// Run the below command for each new terminal session
-// export MONGO_URI="mongodb+srv://simone:Nodejs2022@portfolio-cluster.z0ixmu0.mongodb.net/portfolio_data"

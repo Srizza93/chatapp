@@ -27,7 +27,7 @@ export default {
 	methods: {
 		inputsValidation(data) {
 			const user = this.users.find(
-				(user) => user.emailaddress === data[0].text
+				(user) => user.email_Address === data[0].text
 			);
 			if (!user) {
 				this.wrongUser = true;

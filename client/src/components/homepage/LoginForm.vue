@@ -98,13 +98,13 @@ export default {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	font-size: 14px;
+	font-size: 12px;
 	color: red;
 }
 .input-container_icon {
 	width: 20px;
 	height: 20px;
-	margin-left: 10px;
+	margin-left: 5px;
 }
 .forgot-password {
 	margin-bottom: 20px;

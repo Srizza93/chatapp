@@ -9,13 +9,10 @@ import TopUserPage from "@/components/user/TopUserPage.vue";
 export default {
 	name: "LoginPage",
 	components: { TopUserPage },
-	data() {
-		return {
-			user: {},
-		};
-	},
-	mounted() {
-		this.user = this.$store.getters.userData;
+	computed: {
+		user() {
+			return this.$store.getters.userData;
+		},
 	},
 };
 </script>
