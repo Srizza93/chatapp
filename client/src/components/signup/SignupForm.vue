@@ -2,16 +2,16 @@
 	<form class="signup-form" @submit.prevent="$emit('sendFormToParent')">
 		<div
 			class="input-container"
-			v-for="field in fields"
-			:key="field.id + '-field'"
+			v-for="(field, index) in fields"
+			:key="index + '-field'"
 		>
 			<input
 				class="input-container_input"
 				:name="field.name"
 				:type="field.type"
 				:placeholder="field.placeholder"
-				@focusout="field.validationFunction(field)"
-				v-model="field.value"
+				@focusout="inputValidation($event, field)"
+				required
 			/>
 			<img
 				v-if="field.value"
@@ -40,6 +40,13 @@ export default {
 		},
 		isInputValid(input) {
 			return input ? "green-tick" : "red-cross";
+		},
+		inputValidation(e, field) {
+			const data = {
+				field,
+				newValue: e.target.value,
+			};
+			this.$store.dispatch("validationFunction", data);
 		},
 	},
 };

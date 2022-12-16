@@ -29,3 +29,31 @@ body {
 .show-message {
 	opacity: 1 !important;
 }
+
+.close-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-right: 10px;
+	font-size: 35px;
+	cursor: pointer;
+}
+.close-button:hover {
+	opacity: $standard-opacity;
+}
+
+.popup {
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 60vw;
+	top: 20%;
+	left: calc(50% - 30vw);
+	padding: $standard-distance;
+	border: 2px solid $primary-color;
+	border-radius: $standard-radius;
+	background-color: white;
+	cursor: default;
+	z-index: 9999;
+}

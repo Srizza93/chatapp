@@ -7,10 +7,17 @@ router.get("/", async (req, res) => {
 	try {
 		const loginCredentials = await LoginCredential.find();
 		if (!loginCredentials) throw new Error("No loginCredentials");
-		const sorted = loginCredentials.sort((a, b) => {
-			return new Date(a.date).getTime() - new Date(b.date).getTime();
-		});
-		res.status(200).json(sorted);
+		res.status(200).json(loginCredentials);
+	} catch (error) {
+		res.status(500).json({ message: error.message });
+	}
+});
+
+router.get("/:id", async (req, res) => {
+	try {
+		const loginCredentials = await LoginCredential.findById(req.params.id);
+		if (!loginCredentials) throw new Error("No loginCredentials");
+		res.status(200).json(loginCredentials);
 	} catch (error) {
 		res.status(500).json({ message: error.message });
 	}

@@ -40,7 +40,7 @@ export default {
 			this.popupIsOpen = !this.popupIsOpen;
 		},
 		fillData() {
-			const excludedProp = ["id", "_id", "date", "__v"];
+			const excludedProp = ["id", "_id", "date", "__v", "friends"];
 			const data = Object.entries(this.$store.getters.userData);
 			data.forEach((entry, index) => {
 				if (!excludedProp.includes(entry[0])) {
@@ -73,7 +73,7 @@ export default {
 	},
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .popup-opener {
 	position: absolute;
 	top: 0;
@@ -82,20 +82,6 @@ export default {
 	height: 25px;
 	cursor: pointer;
 }
-.popup {
-	position: fixed;
-	display: flex;
-	flex-direction: column;
-	width: 60vw;
-	top: 20%;
-	left: calc(50% - 30vw);
-	padding: $standard-distance;
-	border: 2px solid $primary-color;
-	border-radius: $standard-radius;
-	background-color: white;
-	cursor: default;
-}
-
 .field-container {
 	display: flex;
 	justify-content: space-between;
@@ -111,16 +97,5 @@ export default {
 	padding: 5px 10px;
 	border: 2px solid $primary-color;
 	border-radius: $standard-radius;
-}
-.close-button {
-	position: absolute;
-	top: 0;
-	right: 0;
-	margin-right: 10px;
-	font-size: 35px;
-	cursor: pointer;
-}
-.close-button:hover {
-	opacity: $standard-opacity;
 }
 </style>

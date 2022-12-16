@@ -6,6 +6,7 @@
 			:src="userData.wall_Photo"
 			alt="wall-photo"
 		/>
+		<div v-else class="no-photo-wall"></div>
 		<div class="photo-container">
 			<div class="photo-container_sub-container">
 				<img
@@ -50,10 +51,15 @@ export default {
 	display: flex;
 	flex-direction: column;
 }
-.photo-wall {
+.photo-wall,
+.no-photo-wall {
 	width: 100%;
 	height: 300px;
 	object-fit: cover;
+	background-color: white;
+}
+.no-photo-wall {
+	border-bottom: 2px solid $secondary-gray;
 }
 .photo-container {
 	position: relative;
@@ -67,6 +73,9 @@ export default {
 	top: -150px;
 	width: 200px;
 	height: 200px;
+	border: 1px solid $secondary-gray;
+	border-radius: 50%;
+	background-color: white;
 }
 .photo-container_profile {
 	width: 100%;

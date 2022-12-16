@@ -20,11 +20,11 @@ export default {
 			wrongPass: false,
 		};
 	},
-	async mounted() {
-		await this.$store.dispatch("apiCall");
-		this.users = this.$store.getters.usersList;
-	},
 	methods: {
+		async dispatchApiCall() {
+			await this.$store.dispatch("apiCall");
+			this.users = this.$store.getters.usersList;
+		},
 		inputsValidation(data) {
 			const user = this.users.find(
 				(user) => user.email_Address === data[0].text
@@ -42,6 +42,9 @@ export default {
 			this.$store.commit("updateUserData", user);
 			this.$router.push(`/user-home/:${user._id}`);
 		},
+	},
+	mounted() {
+		this.dispatchApiCall();
 	},
 };
 </script>

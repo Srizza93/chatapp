@@ -29,6 +29,10 @@ const LoginCredentialSchema = new Schema({
 		type: String,
 		required: false,
 	},
+	friends: {
+		type: Array,
+		required: true,
+	},
 });
 
 const LoginCredential = model("loginCredential", LoginCredentialSchema);

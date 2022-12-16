@@ -14,6 +14,10 @@ const routeOptions = [
 		name: "UserHome",
 	},
 	{
+		path: "/user/:id",
+		name: "PublicUser",
+	},
+	{
 		path: "/:pathMatch(.*)*",
 		name: "HomePage",
 	},
