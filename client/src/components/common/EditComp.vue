@@ -24,6 +24,7 @@ export default {
 <style lang="scss">
 .edit-container {
 	position: relative;
+	display: flex;
 	width: 25px;
 	height: 25px;
 	padding: 0;

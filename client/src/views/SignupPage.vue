@@ -28,7 +28,16 @@ export default {
 	},
 	computed: {
 		fields() {
-			return Object.values(this.$store.getters.getFields);
+			const fieldsNames = [
+				"email_Address",
+				"password",
+				"confirm_Password",
+				"name",
+				"surname",
+			];
+			return Object.values(this.$store.getters.getFields).filter((field) =>
+				fieldsNames.includes(field.name)
+			);
 		},
 	},
 	methods: {

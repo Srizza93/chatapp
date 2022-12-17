@@ -1,7 +1,9 @@
 <template>
-	<button class="save">
-		<img class="save_img" src="@/assets/save-icon.png" alt="save" />
-	</button>
+	<div class="save-container">
+		<button class="save">
+			<img class="save_img" src="@/assets/save-icon.png" alt="save" />
+		</button>
+	</div>
 </template>
 <script>
 export default {
@@ -9,6 +11,9 @@ export default {
 };
 </script>
 <style lang="scss">
+.save-container {
+	display: flex;
+}
 .save {
 	display: flex;
 	width: 25px;

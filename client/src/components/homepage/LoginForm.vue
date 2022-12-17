@@ -11,8 +11,12 @@
 		<div class="result-login">
 			<input class="submit-button" type="submit" value="Login" />
 			<div class="result-login_message" v-if="wrongUser || wrongPass">
-				<span v-if="wrongUser">Incorrect Email Address</span>
-				<span v-if="wrongPass">Incorrect Password</span>
+				<span class="result-login_message_text" v-if="wrongUser"
+					>Incorrect Email Address</span
+				>
+				<span class="result-login_message_text" v-if="wrongPass"
+					>Incorrect Password</span
+				>
 				<img
 					class="input-container_icon"
 					:src="getImgUrl('red-cross')"
@@ -100,6 +104,9 @@ export default {
 	align-items: center;
 	font-size: 12px;
 	color: red;
+}
+.result-login_message_text {
+	padding: 10px;
 }
 .input-container_icon {
 	width: 20px;

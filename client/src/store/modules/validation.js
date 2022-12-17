@@ -32,7 +32,7 @@ const state = () => ({
 			placeholder: "Name",
 			value: "",
 			valid: false,
-			regex: /^[A-Za-z]{1,}$/,
+			regex: /^[A-Za-z]+$/,
 		},
 		surname: {
 			name: "surname",
@@ -40,7 +40,23 @@ const state = () => ({
 			placeholder: "Surname",
 			value: "",
 			valid: false,
-			regex: /^[A-Za-z]{1,}$/,
+			regex: /^[A-Za-z]+$/,
+		},
+		wall_Photo: {
+			name: "wall_Photo",
+			type: "text",
+			placeholder: "Wall Photo",
+			value: "",
+			valid: false,
+			regex: /./,
+		},
+		profile_Photo: {
+			name: "profile_Photo",
+			type: "text",
+			placeholder: "Profile Photo",
+			value: "",
+			valid: false,
+			regex: /./,
 		},
 	},
 });

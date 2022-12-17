@@ -12,9 +12,11 @@
 					<input
 						class="field-container_input-container_input"
 						:id="field.key"
+						:type="field.type"
 						v-model="field.value"
 						:disabled="!field.editable"
 					/>
+					<ErrorIcon :field="fields[field.key]" />
 					<EditComp @click.prevent="editData(field)" />
 					<SaveComp @click.prevent="saveData(field)" />
 				</div>
@@ -25,32 +27,49 @@
 <script>
 import EditComp from "./EditComp.vue";
 import SaveComp from "./SaveComp.vue";
+import ErrorIcon from "./ErrorIcon.vue";
 
 export default {
 	name: "EditPopUp",
-	components: { EditComp, SaveComp },
+	components: { EditComp, SaveComp, ErrorIcon },
 	data() {
 		return {
 			personalData: [],
 			popupIsOpen: false,
 		};
 	},
+	computed: {
+		fields() {
+			return this.$store.getters.getFields;
+		},
+	},
 	methods: {
 		togglePopup() {
 			this.popupIsOpen = !this.popupIsOpen;
 		},
 		fillData() {
-			const excludedProp = ["id", "_id", "date", "__v", "friends"];
-			const data = Object.entries(this.$store.getters.userData);
-			data.forEach((entry, index) => {
-				if (!excludedProp.includes(entry[0])) {
+			const fieldsNames = [
+				"email_Address",
+				"name",
+				"surname",
+				"password",
+				"wall_Photo",
+				"profile_Photo",
+			];
+			const fields = this.$store.getters.getFields;
+			let index = 0;
+
+			for (const field in fields) {
+				if (fieldsNames.includes(fields[field].name)) {
 					this.personalData.push({
 						id: index,
-						key: entry[0],
-						value: entry[1],
+						key: fields[field].name,
+						value: fields[field].value,
+						type: fields[field].type,
 					});
 				}
-			});
+				index++;
+			}
 		},
 		editData(field) {
 			field.editable = !field.editable;
@@ -61,7 +80,17 @@ export default {
 				[field.key]: field.value,
 			};
 
-			this.$store.dispatch("updateUserToDatabase", [id, newUserData]);
+			this.dispatchData(field, id, newUserData);
+		},
+		dispatchData(field, id, newUserData) {
+			const data = {
+				field: this.fields[field.key],
+				newValue: field.value,
+			};
+			this.$store.dispatch("validationFunction", data);
+			if (this.fields[field.key].valid) {
+				this.$store.dispatch("updateUserToDatabase", [id, newUserData]);
+			}
 		},
 		parseText(text) {
 			text = text.replace("_", " ");
@@ -89,12 +118,13 @@ export default {
 	margin: 10px 0;
 }
 .field-container_input-container {
+	position: relative;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 }
 .field-container_input-container_input {
-	padding: 5px 10px;
+	padding: $small-distance;
 	border: 2px solid $primary-color;
 	border-radius: $standard-radius;
 }

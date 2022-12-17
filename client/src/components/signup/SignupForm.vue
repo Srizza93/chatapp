@@ -13,20 +13,17 @@
 				@focusout="inputValidation($event, field)"
 				required
 			/>
-			<img
-				v-if="field.value"
-				class="input-container_cross"
-				:src="getImgUrl(isInputValid(field.valid))"
-				alt="red-cross/green-tick"
-				v-bind:class="{ 'outline-pop': !field.valid }"
-			/>
+			<ErrorIcon :field="field" />
 		</div>
 		<input class="submit-button" type="submit" />
 	</form>
 </template>
 <script>
+import ErrorIcon from "../common/ErrorIcon.vue";
+
 export default {
 	name: "SignupForm",
+	components: { ErrorIcon },
 	props: {
 		fields: {
 			type: Array,
@@ -34,13 +31,6 @@ export default {
 		},
 	},
 	methods: {
-		getImgUrl(pic) {
-			const images = require.context("@/assets", false, /\.png$/);
-			return images("./" + pic + ".png");
-		},
-		isInputValid(input) {
-			return input ? "green-tick" : "red-cross";
-		},
 		inputValidation(e, field) {
 			const data = {
 				field,
@@ -71,30 +61,5 @@ export default {
 	border: 2px solid $primary-gray;
 	border-radius: $standard-radius;
 	margin-bottom: 20px;
-}
-.input-container_cross {
-	position: absolute;
-	right: -25px;
-	top: 10px;
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-}
-
-.outline-pop {
-	animation: outline-pop 1s infinite;
-}
-
-@keyframes outline-pop {
-	0% {
-		outline: none;
-	}
-	50% {
-		outline: 2px solid red;
-	}
-	100% {
-		outline-offset: 2px;
-		outline: transparent;
-	}
 }
 </style>
