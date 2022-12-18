@@ -26,6 +26,13 @@
 				>
 					Add
 				</button>
+				<button
+					v-if="chatFeature"
+					class="friend-card_add"
+					@click="chatWithFriend(friend)"
+				>
+					Chat
+				</button>
 			</div>
 		</div>
 		<span v-else>There are no friends here</span>
@@ -43,6 +50,10 @@ export default {
 			type: Boolean,
 			required: false,
 		},
+		chatFeature: {
+			type: Boolean,
+			required: false,
+		},
 	},
 	methods: {
 		addFriendToUser(friendId) {
@@ -53,6 +64,9 @@ export default {
 				myData._id,
 				newFriendsList,
 			]);
+		},
+		chatWithFriend(friend) {
+			console.log(friend);
 		},
 	},
 };

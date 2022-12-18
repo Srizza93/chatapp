@@ -58,7 +58,7 @@ export default {
 			};
 
 			try {
-				await axios.post("api/loginCredentials/", data).then((response) => {
+				await axios.post("api/users/", data).then((response) => {
 					if (response.status === 200) {
 						this.$store.commit("signupUser", response);
 						this.validateSignup("Account Created Successfully!!!");
@@ -93,6 +93,9 @@ export default {
 				this.$store.dispatch("cleanInputs", [name, "", false]);
 			}
 		},
+	},
+	mounted() {
+		this.cleanUpForm();
 	},
 };
 </script>

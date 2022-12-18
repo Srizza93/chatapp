@@ -14,7 +14,7 @@ const actions = {
 	async updateUserToDatabase({ commit }, newUserData) {
 		try {
 			const response = await axios.put(
-				"/api/loginCredentials/" + newUserData[0],
+				"/api/users/" + newUserData[0],
 				newUserData[1]
 			);
 			commit("updateUserData", response.data);

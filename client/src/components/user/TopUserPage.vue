@@ -50,6 +50,7 @@ export default {
 .top-page {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 }
 .photo-wall,
 .no-photo-wall {
@@ -66,7 +67,6 @@ export default {
 	display: flex;
 	justify-content: center;
 	width: 200px;
-	margin-left: 50px;
 }
 .photo-container_sub-container {
 	position: absolute;

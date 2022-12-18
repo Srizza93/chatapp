@@ -6,10 +6,10 @@ const state = () => ({
 
 // actions
 const actions = {
-	async apiCall(context) {
+	async apiCall({ commit }) {
 		try {
-			const response = await axios.get("api/loginCredentials/");
-			context.commit("updateUsersState", response);
+			const response = await axios.get("api/users/");
+			commit("updateUsersState", response);
 		} catch (e) {
 			console.error(e);
 		}

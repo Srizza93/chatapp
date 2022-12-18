@@ -42,6 +42,9 @@ export default {
 		fields() {
 			return this.$store.getters.getFields;
 		},
+		user() {
+			return this.$store.getters.userData;
+		},
 	},
 	methods: {
 		togglePopup() {
@@ -56,16 +59,15 @@ export default {
 				"wall_Photo",
 				"profile_Photo",
 			];
-			const fields = this.$store.getters.getFields;
 			let index = 0;
 
-			for (const field in fields) {
-				if (fieldsNames.includes(fields[field].name)) {
+			for (const field in this.fields) {
+				if (fieldsNames.includes(this.fields[field].name)) {
 					this.personalData.push({
 						id: index,
-						key: fields[field].name,
-						value: fields[field].value,
-						type: fields[field].type,
+						key: this.fields[field].name,
+						value: this.user[field],
+						type: this.fields[field].type,
 					});
 				}
 				index++;
@@ -75,7 +77,7 @@ export default {
 			field.editable = !field.editable;
 		},
 		saveData(field) {
-			const id = this.$store.getters.userData._id;
+			const id = this.user._id;
 			const newUserData = {
 				[field.key]: field.value,
 			};

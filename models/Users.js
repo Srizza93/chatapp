@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const LoginCredentialSchema = new Schema({
+const UsersSchema = new Schema({
 	email_Address: {
 		type: String,
 		required: true,
@@ -29,12 +29,14 @@ const LoginCredentialSchema = new Schema({
 		type: String,
 		required: false,
 	},
-	friends: {
-		type: Array,
-		required: true,
-	},
+	friends: [
+		{
+			type: String,
+			required: false,
+		},
+	],
 });
 
-const LoginCredential = model("loginCredential", LoginCredentialSchema);
+const Users = model("users", UsersSchema);
 
-module.exports = LoginCredential;
+module.exports = Users;

@@ -14,6 +14,14 @@ import FooterComp from "./components/common/FooterComp.vue";
 export default {
 	name: "App",
 	components: { FooterComp },
+	methods: {
+		async dispatchApiCall() {
+			await this.$store.dispatch("apiCall");
+		},
+	},
+	mounted() {
+		this.dispatchApiCall();
+	},
 };
 </script>
 
@@ -32,6 +40,7 @@ export default {
 	display: flex;
 	justify-content: end;
 	padding: 10px;
+	z-index: 99999;
 }
 .icon-container:hover {
 	opacity: $standard-opacity;

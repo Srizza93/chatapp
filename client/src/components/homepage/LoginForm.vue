@@ -49,7 +49,7 @@ export default {
 		return {
 			fields: [
 				{
-					name: "emailaddress",
+					name: "email_Address",
 					text: "",
 					type: "email",
 					placeholder: "Email Address",

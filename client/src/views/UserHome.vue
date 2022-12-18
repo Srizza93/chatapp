@@ -1,7 +1,11 @@
 <template>
 	<div class="user-home">
 		<TopUserPage :userData="user" />
-		<FriendsGallery class="user-friends-gallery" :friends="friendsData" />
+		<FriendsGallery
+			class="user-friends-gallery"
+			:friends="friendsData"
+			:chatFeature="true"
+		/>
 		<AddFriends :userId="user._id" />
 	</div>
 </template>
@@ -26,6 +30,9 @@ export default {
 		friends() {
 			return this.user.friends;
 		},
+		fields() {
+			return this.$store.getters.getFields;
+		},
 	},
 	watch: {
 		friends() {
@@ -42,18 +49,24 @@ export default {
 
 			for (let i = index; i < friendsIds.length; i++) {
 				try {
-					const response = await axios.get(
-						"/api/loginCredentials/" + friendsIds[i]
-					);
+					const response = await axios.get("/api/users/" + friendsIds[i]);
 					this.friendsData.push(response.data);
 				} catch (error) {
 					console.log("Error in UserHome: " + error);
 				}
 			}
 		},
+		cleanUpForm() {
+			for (const key in this.fields) {
+				const name = { name: this.fields[key].name };
+				const value = this.user[key];
+				this.$store.dispatch("cleanInputs", [name, value, true]);
+			}
+		},
 	},
 	mounted() {
 		this.fillFriendsList(0);
+		this.cleanUpForm();
 	},
 };
 </script>
