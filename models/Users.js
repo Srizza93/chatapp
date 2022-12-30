@@ -35,6 +35,12 @@ const UsersSchema = new Schema({
 			required: false,
 		},
 	],
+	chat: [
+		{
+			type: Object,
+			required: false,
+		},
+	],
 });
 
 const Users = model("users", UsersSchema);

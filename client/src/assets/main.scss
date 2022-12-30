@@ -1,59 +1,70 @@
 html,
 body {
-	padding: 0;
-	margin: 0;
-	background-color: #f0f2f5;
-	font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+  background-color: #f0f2f5;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .submit-button {
-	display: flex;
-	justify-content: center;
-	width: 100%;
-	max-width: 150px;
-	padding: 5px;
-	border: none;
-	border-radius: $standard-radius;
-	color: white;
-	background-color: $primary-color;
-	font-size: 15px;
-	cursor: pointer;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 150px;
+  padding: 5px;
+  border: none;
+  border-radius: $standard-radius;
+  color: white;
+  background-color: $primary-color;
+  font-size: 15px;
+  cursor: pointer;
 }
 .submit-button:hover {
-	background-color: $hover-primary-color;
+  background-color: $hover-primary-color;
 }
 .show-message {
-	opacity: 1 !important;
+  opacity: 1 !important;
 }
 
 .close-button {
-	position: absolute;
-	top: 0;
-	right: 0;
-	margin-right: 10px;
-	font-size: 35px;
-	cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 10px;
+  font-size: 35px;
+  cursor: pointer;
 }
 .close-button:hover {
-	opacity: $standard-opacity;
+  opacity: $standard-opacity;
 }
 
 .popup {
-	position: fixed;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	width: 60vw;
-	top: 20%;
-	left: calc(50% - 30vw);
-	padding: $standard-distance;
-	border: 2px solid $primary-color;
-	border-radius: $standard-radius;
-	background-color: white;
-	cursor: default;
-	z-index: 9999;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 20%;
+  width: 350px;
+  height: 350px;
+  left: calc(50% - 175px);
+  padding: $standard-distance;
+  border: 2px solid $primary-color;
+  border-radius: $standard-radius;
+  background-color: white;
+  cursor: default;
+  z-index: 9999;
+  overflow: auto;
+}
+
+.input-app {
+  padding: $small-distance;
+  border: 2px solid $primary-gray;
+  border-radius: $standard-radius;
+  margin-bottom: 20px;
+}
+.input-app:focus {
+  outline: 2px solid $primary-color;
 }
