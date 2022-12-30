@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <RouterLink class="icon-container" to="/">
+    <RouterLink class="icon-container" to="/" @click="logOut">
       <img src="@/assets/chat-icon.png" alt="icon" />
     </RouterLink>
     <RouterView></RouterView>
@@ -14,6 +14,12 @@ import FooterComp from "./components/common/FooterComp.vue";
 export default {
   name: "App",
   components: { FooterComp },
+  methods: {
+    logOut() {
+      document.cookie =
+        "userid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    },
+  },
 };
 </script>
 

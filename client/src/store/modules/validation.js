@@ -96,7 +96,6 @@ const actions = {
       const password = this.getters.getFields.password.value;
       fieldRegex = new RegExp("^" + password + "$");
     }
-
     dispatch("regexValidation", {
       data,
       fieldRegex,

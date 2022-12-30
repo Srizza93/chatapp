@@ -61,6 +61,26 @@ router.post("/:id/friends", async (req, res) => {
   }
 });
 
+router.post("/:id/chats", async (req, res) => {
+  const userId = req.params.id;
+  const newChat = req.body.chat;
+
+  try {
+    const user = await Users.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    user.chats.push(newChat);
+
+    await user.save();
+
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {

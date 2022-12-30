@@ -21,8 +21,8 @@
     />
     <ChatPopup
       v-if="chatIsOpen"
-      :chatId="chatId"
-      :friendId="chatFriend"
+      :userData="userData"
+      :friendData="chatFriend"
       @closeChat="closeChat"
     />
   </div>
@@ -41,7 +41,6 @@ export default {
     return {
       users: [],
       userData: {},
-      chatId: "",
       chatFriend: "",
       chatIsOpen: false,
     };
@@ -98,15 +97,17 @@ export default {
       this.$router.push(`/`);
     },
     async APISaveUserData(field) {
+      let computedField = this.fields.find((f) => f.name === field.name);
       const newUserData = {
         [field.name]: field.value,
       };
       const data = {
-        field: this.fields.find((f) => f.name === field.name),
+        field: computedField,
         newValue: field.value,
       };
       this.$store.dispatch("validationFunction", data);
-      if (field.valid) {
+      computedField = this.fields.find((f) => f.name === field.name);
+      if (computedField.valid) {
         await axios
           .put(`/api/users/${this.userData._id}`, newUserData)
           .catch(console.error);
@@ -114,7 +115,8 @@ export default {
       }
     },
     openChat(friend) {
-      console.log(friend);
+      this.chatFriend = friend;
+      this.chatIsOpen = true;
     },
     closeChat() {
       this.chatIsOpen = false;
