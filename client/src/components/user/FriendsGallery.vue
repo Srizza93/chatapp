@@ -9,7 +9,7 @@
       >
         <router-link
           class="friend-card_router-link"
-          :to="'../user/' + friend._id"
+          :to="'../user-home/' + friend._id"
         >
           <img
             class="friend-card_photo"
@@ -20,14 +20,14 @@
           <span class="friend-card_name">{{ friend.name }}</span>
         </router-link>
         <button
-          v-if="addFriend"
+          v-if="addFriend && userIsInOwnPage"
           class="friend-card_add"
           @click="$emit('addFriendToUser', friend._id)"
         >
           Add
         </button>
         <button
-          v-if="chatFeature"
+          v-if="chatFeature && userIsInOwnPage"
           class="friend-card_add"
           @click="$emit('chatWithFriend', friend)"
         >
@@ -55,6 +55,10 @@ export default {
       required: false,
     },
     chatFeature: {
+      type: Boolean,
+      required: false,
+    },
+    userIsInOwnPage: {
       type: Boolean,
       required: false,
     },

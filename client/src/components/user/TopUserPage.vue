@@ -15,7 +15,7 @@
           :src="userData.profile_Photo"
           alt="profile-photo"
         />
-        <EditComp :editClass="editClass">
+        <EditComp v-if="userIsInOwnPage" :editClass="editClass">
           <EditPopUp
             :userData="userData"
             :fields="fields"
@@ -44,6 +44,10 @@ export default {
     };
   },
   props: {
+    userIsInOwnPage: {
+      type: Boolean,
+      required: true,
+    },
     userData: {
       type: Object,
       required: true,

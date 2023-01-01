@@ -6,6 +6,7 @@
       :key="index + '-field'"
       :type="field.type"
       :placeholder="field.placeholder"
+      :autocomplete="field.type === 'password' ? 'current-password' : ''"
       v-model="field.text"
     />
     <div class="result-login">

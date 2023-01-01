@@ -13,6 +13,9 @@
               :placeholder="
                 field.type !== 'password' ? userData[field.name] : '*****'
               "
+              :autocomplete="
+                field.type === 'password' ? 'current-password' : ''
+              "
               v-model="field.value"
             />
             <ErrorIcon :field="field" />

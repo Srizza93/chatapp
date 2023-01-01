@@ -7,6 +7,9 @@
         v-for="(message, index) in chat.messages"
         :key="index + '-chat'"
       >
+        <span class="message-container_sender">{{
+          message.sender === userData.name ? "Me" : message.sender
+        }}</span>
         <span
           class="message-container_text"
           v-bind:class="{ 'friend-message': message.sender !== userData.name }"
@@ -14,9 +17,6 @@
         >
         <span class="message-container_date">{{
           parsedDate(message.date)
-        }}</span>
-        <span class="message-container_sender">{{
-          message.sender === userData.name ? "Me" : message.sender
         }}</span>
       </div>
     </div>

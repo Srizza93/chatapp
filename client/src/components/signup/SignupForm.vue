@@ -10,6 +10,7 @@
         :name="field.name"
         :type="field.type"
         :placeholder="field.placeholder"
+        :autocomplete="field.type === 'password' ? 'current-password' : ''"
         @focusout="inputValidation($event, field)"
         required
       />

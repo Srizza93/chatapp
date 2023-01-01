@@ -1,39 +1,35 @@
 import { createWebHistory, createRouter } from "vue-router";
 
 const routeOptions = [
-	{
-		path: "/",
-		name: "HomePage",
-	},
-	{
-		path: "/signup",
-		name: "SignupPage",
-	},
-	{
-		path: "/user-home/:id",
-		name: "UserHome",
-	},
-	{
-		path: "/user/:id",
-		name: "PublicUser",
-	},
-	{
-		path: "/:pathMatch(.*)*",
-		name: "HomePage",
-	},
+  {
+    path: "/",
+    name: "HomePage",
+  },
+  {
+    path: "/signup",
+    name: "SignupPage",
+  },
+  {
+    path: "/user-home/:id",
+    name: "UserHome",
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "HomePage",
+  },
 ];
 
 const routes = routeOptions.map((route) => {
-	return {
-		...route,
-		component: () =>
-			import(/* webpackChunkName: "[request]" */ `../views/${route.name}.vue`),
-	};
+  return {
+    ...route,
+    component: () =>
+      import(/* webpackChunkName: "[request]" */ `../views/${route.name}.vue`),
+  };
 });
 
 const router = createRouter({
-	history: createWebHistory(),
-	routes,
+  history: createWebHistory(),
+  routes,
 });
 
 export default router;
