@@ -16,9 +16,10 @@
       @chatWithFriend="openChat"
     />
     <AddFriends
-      v-if="userData && userData.friends && users && userIsInOwnPage"
+      v-if="userData && users && userIsInOwnPage"
       :userData="userData"
       :users="users"
+      :userIsInOwnPage="userIsInOwnPage"
       @APIGetUserData="APIGetUserData"
     />
     <ChatPopup
@@ -85,6 +86,12 @@ export default {
       );
     },
     userIsInOwnPage() {
+      console.log(
+        this.$route.params.id.substring(
+          this.$route.params.id.indexOf(":") + 1 || 0
+        ),
+        this.userId
+      );
       return (
         this.$route.params.id.substring(
           this.$route.params.id.indexOf(":") + 1 || 0
@@ -183,8 +190,8 @@ export default {
 
 .profile-photo-link {
   position: fixed;
-  right: 0;
-  bottom: 0;
+  left: 0;
+  top: 0;
   padding: 10px;
   z-index: 99999;
 }

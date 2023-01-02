@@ -34,7 +34,7 @@ const state = () => ({
       placeholder: "Name",
       value: "",
       valid: false,
-      regex: /^[A-Za-z]+$/,
+      regex: /^[A-Za-z]+[A-Za-z ]+[A-Za-z]$/,
     },
     surname: {
       name: "surname",
@@ -42,11 +42,11 @@ const state = () => ({
       placeholder: "Surname",
       value: "",
       valid: false,
-      regex: /^[A-Za-z]+$/,
+      regex: /^[A-Za-z]+[A-Za-z ]+[A-Za-z]$/,
     },
     wall_Photo: {
       name: "wall_Photo",
-      type: "text",
+      type: "file",
       placeholder: "Wall Photo",
       value: "",
       valid: false,
@@ -54,7 +54,7 @@ const state = () => ({
     },
     profile_Photo: {
       name: "profile_Photo",
-      type: "text",
+      type: "file",
       placeholder: "Profile Photo",
       value: "",
       valid: false,

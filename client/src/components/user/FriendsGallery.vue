@@ -109,6 +109,7 @@ export default {
 .friend-card_add {
   position: absolute;
   bottom: 0;
+  left: 0;
   padding: $button-padding;
   border: none;
   border-radius: 0 10px 0 10px;

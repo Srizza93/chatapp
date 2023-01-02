@@ -10,6 +10,7 @@
         v-bind:class="{ 'users-list-closed': !usersListOpen }"
         :userId="userData._id"
         :friends="strangers"
+        :userIsInOwnPage="userIsInOwnPage"
         :addFriend="true"
         @addFriendToUser="addFriendToUser"
       >
@@ -37,6 +38,10 @@ export default {
     },
     users: {
       type: Array,
+      required: true,
+    },
+    userIsInOwnPage: {
+      type: Boolean,
       required: true,
     },
   },

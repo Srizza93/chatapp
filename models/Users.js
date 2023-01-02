@@ -22,11 +22,11 @@ const UsersSchema = new Schema({
     required: false,
   },
   wall_Photo: {
-    type: String,
+    type: Buffer,
     required: false,
   },
   profile_Photo: {
-    type: String,
+    type: Buffer,
     required: false,
   },
   friends: [

@@ -81,6 +81,7 @@ export default {
   align-items: center;
 }
 .field-container_input-container_input {
+  width: 230px;
   padding: $small-distance;
   margin-right: 15px;
   border: 2px solid $primary-color;
